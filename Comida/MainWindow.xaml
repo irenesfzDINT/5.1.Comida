@@ -6,8 +6,58 @@
         xmlns:local="clr-namespace:Comida"
         mc:Ignorable="d"
         Icon="assets/fruit_food_apple.ico"
-        Title="Comida" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Background="Beige"
+        Title="Comida"
+        Height="450"
+        Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin"
+                    Value="5"></Setter>
+        </Style>
+        <!--margen para menú de la derecha-->
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin"
+                    Value="5,5,0,0"></Setter>
+        </Style>
+        <!--margen para menú de la derecha-->
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin"
+                    Value="5,0,5,0"></Setter>
+        </Style>
+    </Window.Resources>
+    <Border BorderThickness="1"
+            BorderBrush="Black"
+            Background="AliceBlue"
+            Margin="10">
+        <DockPanel>
+            <StackPanel Margin="10"
+                        Width="250"
+                        DockPanel.Dock="Right"
+                        Orientation="Vertical"
+                        Background="PaleGreen">
+                <TextBlock Text="Nombre del Plato"></TextBlock>
+                <TextBox></TextBox>
+                <TextBlock Text="Foto del plato"></TextBlock>
+                <TextBox></TextBox>
+                <TextBlock Text="Tipo de comida"></TextBlock>
+                <TextBox></TextBox>
+                <GroupBox Margin="5"
+                          Header="Alérgenos">
+                    <UniformGrid>
+                        <CheckBox Content="Leche"></CheckBox>
+                        <CheckBox Content="Soja"></CheckBox>
+                        <CheckBox Content="Gluten"></CheckBox>
+                        <CheckBox Content="Sulfitos"></CheckBox>
+                    </UniformGrid>
+                </GroupBox>
+                <Button Margin="5"
+                        Content="Limpiar selección"
+                        HorizontalAlignment="Left"></Button>
+            </StackPanel>
+            <WrapPanel>
+
+            </WrapPanel>
+        </DockPanel>
+    </Border>
 </Window>
