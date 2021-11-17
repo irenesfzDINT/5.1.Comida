@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>assets\fruit_food_apple.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -93,6 +96,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\fruit_food_apple.ico" />
+    <Resource Include="assets\gluten.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\milk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\soybean.png" />
+    <Resource Include="assets\sulfide.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\hotdog.jpg" />
+    <Resource Include="assets\mexico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\china.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\united_states.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
