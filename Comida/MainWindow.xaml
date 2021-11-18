@@ -79,15 +79,21 @@
                                 <Border BorderBrush="Black"
                                         BorderThickness="2"
                                         Width="250"
-                                        Height="250">
+                                        Height="250" Background="White" Margin="10">
+                                    <Border.Effect>
+                                        <DropShadowEffect />
+                                    </Border.Effect>
+
                                     <DockPanel>
                                         <TextBlock x:Name="TituloComida"
-                                                   DockPanel.Dock="Top"
+                                                   DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                    Text="{Binding Path=Nombre}"></TextBlock>
                                         <DockPanel DockPanel.Dock="Bottom"
-                                                   LastChildFill="False">
+                                                   LastChildFill="False" Margin="5">
                                             <Image DockPanel.Dock="Left"
-                                                   x:Name="Bandera"></Image>
+                                                   x:Name="Bandera"
+                                                   Source="assets/china.png"
+                                                   Style="{StaticResource iconosAlergenos}"></Image>
                                             <Image DockPanel.Dock="Right"
                                                    x:Name="sulfitos"
                                                    Style="{StaticResource iconosAlergenos}"
@@ -101,13 +107,15 @@
                                             <Image DockPanel.Dock="Right"
                                                    x:Name="leche"
                                                    Style="{StaticResource iconosAlergenos}"
-                                                   Source="assets/milk.png"></Image>
+                                                   Source="assets/milk.png"
+                                                   Visibility="{Binding Converter={StaticResource Visibility}, Path=Leche}"></Image>
                                             <Image DockPanel.Dock="Right"
                                                    x:Name="soja"
                                                    Style="{StaticResource iconosAlergenos}"
-                                                   Source="assets/soybean.png"></Image>
+                                                   Source="assets/soybean.png"
+                                                   Visibility="{Binding Converter={StaticResource Visibility}, Path=Soja}"></Image>
                                         </DockPanel>
-                                        <Image Source="{Binding Path=Imagen}"></Image>
+                                        <Image Source="{Binding Path=Imagen}" Margin="5"></Image>
                                     </DockPanel>
                                 </Border>
                             </WrapPanel>
