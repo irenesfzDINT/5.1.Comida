@@ -11,6 +11,7 @@
         Height="450"
         Width="800">
     <Window.Resources>
+        <local:ImageVisibilityConverter x:Key="Visibility"></local:ImageVisibilityConverter>
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Margin"
                     Value="5"></Setter>
@@ -25,6 +26,11 @@
             <Setter Property="Margin"
                     Value="5,0,5,0"></Setter>
         </Style>
+        <!--Imagenes-->
+        <Style TargetType="{x:Type Image}" x:Key="iconosAlergenos">
+            <Setter Property="Width"
+                    Value="20"></Setter>
+        </Style>
     </Window.Resources>
     <Border BorderThickness="1"
             BorderBrush="Black"
@@ -35,7 +41,7 @@
                         Width="250"
                         DockPanel.Dock="Right"
                         Orientation="Vertical"
-                        Background="PaleGreen">
+                        Background="LightGray">
                 <TextBlock Text="Nombre del Plato"></TextBlock>
                 <TextBox></TextBox>
                 <TextBlock Text="Foto del plato"></TextBlock>
@@ -43,7 +49,8 @@
                 <TextBlock Text="Tipo de comida"></TextBlock>
                 <TextBox></TextBox>
                 <GroupBox Margin="5"
-                          Header="Alérgenos">
+                          Header="Alérgenos"
+                          BorderBrush="Black">
                     <UniformGrid>
                         <CheckBox Content="Leche"></CheckBox>
                         <CheckBox Content="Soja"></CheckBox>
@@ -52,12 +59,62 @@
                     </UniformGrid>
                 </GroupBox>
                 <Button Margin="5"
+                        Width="100"
                         Content="Limpiar selección"
                         HorizontalAlignment="Left"></Button>
             </StackPanel>
-            <WrapPanel>
-
-            </WrapPanel>
+            <Border Margin="10"
+                    BorderBrush="LightGray"
+                    BorderThickness="1">
+                <ListBox ItemsSource="{Binding Path=ListaComida}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Border BorderBrush="Black"
+                                        BorderThickness="2"
+                                        Width="250"
+                                        Height="250">
+                                    <DockPanel>
+                                        <TextBlock x:Name="TituloComida"
+                                                   DockPanel.Dock="Top"
+                                                   Text="{Binding Path=Nombre}"></TextBlock>
+                                        <DockPanel DockPanel.Dock="Bottom"
+                                                   LastChildFill="False">
+                                            <Image DockPanel.Dock="Left"
+                                                   x:Name="Bandera"></Image>
+                                            <Image DockPanel.Dock="Right"
+                                                   x:Name="sulfitos"
+                                                   Style="{StaticResource iconosAlergenos}"
+                                                   Source="assets/sulfide.png"
+                                                   Visibility="{Binding Converter={StaticResource Visibility}, Path=Sulfitos}"></Image>
+                                            <Image DockPanel.Dock="Right"
+                                                   x:Name="gluten"
+                                                   Source="assets/gluten.png"
+                                                   Style="{StaticResource iconosAlergenos}"
+                                                   Visibility="{Binding Converter={StaticResource Visibility}, Path=Gluten}"></Image>
+                                            <Image DockPanel.Dock="Right"
+                                                   x:Name="leche"
+                                                   Style="{StaticResource iconosAlergenos}"
+                                                   Source="assets/milk.png"></Image>
+                                            <Image DockPanel.Dock="Right"
+                                                   x:Name="soja"
+                                                   Style="{StaticResource iconosAlergenos}"
+                                                   Source="assets/soybean.png"></Image>
+                                        </DockPanel>
+                                        <Image Source="{Binding Path=Imagen}"></Image>
+                                    </DockPanel>
+                                </Border>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
         </DockPanel>
     </Border>
 </Window>

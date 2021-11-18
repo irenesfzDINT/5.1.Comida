@@ -66,12 +66,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FontConverter.cs" />
+    <Compile Include="ImageVisibilityConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainWindowVM.cs" />
+    <Compile Include="Plato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -109,7 +113,6 @@
     <Resource Include="assets\sulfide.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\hotdog.jpg" />
     <Resource Include="assets\mexico.png" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +120,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="assets\united_states.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\fotoPlatos\burguer.jpg" />
+    <Resource Include="assets\fotoPlatos\cerdoagridulce.jpg" />
+    <Resource Include="assets\fotoPlatos\dumplings.jpg" />
+    <Resource Include="assets\fotoPlatos\fajitas.jpg" />
+    <Resource Include="assets\fotoPlatos\hotdog.jpg" />
+    <Resource Include="assets\fotoPlatos\tacos.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
