@@ -12,6 +12,7 @@
         Width="800">
     <Window.Resources>
         <local:ImageVisibilityConverter x:Key="Visibility"></local:ImageVisibilityConverter>
+        <local:FontConverter x:Key="FontConverter"></local:FontConverter>
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Margin"
                     Value="5"></Setter>
@@ -27,10 +28,37 @@
                     Value="5,0,5,0"></Setter>
         </Style>
         <!--Imagenes-->
-        <Style TargetType="{x:Type Image}" x:Key="iconosAlergenos">
+        <Style TargetType="{x:Type Image}"
+               x:Key="iconosAlergenos">
             <Setter Property="Width"
                     Value="20"></Setter>
         </Style>
+        <!--Imágenes banderas-->
+        <Style TargetType="{x:Type Image}"
+               x:Key="banderas">
+            <Setter Property="Width"
+                    Value="30"></Setter>
+            <Setter Property="Visibility"
+                    Value="Visible"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Tipo}"
+                             Value="Americana">
+                    <Setter Property="Source"
+                            Value="assets/united_states.png"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}"
+                             Value="China">
+                    <Setter Property="Source"
+                            Value="assets/china.png"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Tipo}"
+                             Value="Mexicana">
+                    <Setter Property="Source"
+                            Value="assets/mexico.png"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     <Border BorderThickness="1"
             BorderBrush="Black"
@@ -78,22 +106,29 @@
                             <WrapPanel>
                                 <Border BorderBrush="Black"
                                         BorderThickness="2"
-                                        Width="250"
-                                        Height="250" Background="White" Margin="10">
+                                        Width="230"
+                                        Height="250"
+                                        Background="White"
+                                        Margin="10">
                                     <Border.Effect>
                                         <DropShadowEffect />
                                     </Border.Effect>
 
-                                    <DockPanel>
-                                        <TextBlock x:Name="TituloComida"
-                                                   DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                   Text="{Binding Path=Nombre}"></TextBlock>
+                                    <DockPanel Background="SkyBlue">
+                                        <Viewbox DockPanel.Dock="Top" Height="40">
+                                            <TextBlock x:Name="TituloComida"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Text="{Binding Path=Nombre}"
+                                                       FontFamily="{Binding Converter={StaticResource FontConverter}, Path=Tipo}">
+                                            </TextBlock>
+                                        </Viewbox>
                                         <DockPanel DockPanel.Dock="Bottom"
-                                                   LastChildFill="False" Margin="5">
+                                                   LastChildFill="False"
+                                                   Margin="5">
                                             <Image DockPanel.Dock="Left"
                                                    x:Name="Bandera"
-                                                   Source="assets/china.png"
-                                                   Style="{StaticResource iconosAlergenos}"></Image>
+                                                   Style="{StaticResource banderas}"></Image>
                                             <Image DockPanel.Dock="Right"
                                                    x:Name="sulfitos"
                                                    Style="{StaticResource iconosAlergenos}"
@@ -115,7 +150,8 @@
                                                    Source="assets/soybean.png"
                                                    Visibility="{Binding Converter={StaticResource Visibility}, Path=Soja}"></Image>
                                         </DockPanel>
-                                        <Image Source="{Binding Path=Imagen}" Margin="5"></Image>
+                                        <Image Source="{Binding Path=Imagen}"
+                                               Margin="5" Height="300"></Image>
                                     </DockPanel>
                                 </Border>
                             </WrapPanel>
