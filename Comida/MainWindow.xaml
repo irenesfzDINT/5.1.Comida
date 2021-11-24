@@ -73,7 +73,10 @@
                 <TextBlock Text="Nombre del Plato"></TextBlock>
                 <TextBox></TextBox>
                 <TextBlock Text="Foto del plato"></TextBlock>
-                <TextBox></TextBox>
+                <ComboBox Margin="5"
+                          SelectedItem="{Binding Path=PlatoActual.Tipo}"
+                          ItemsSource="{Binding Path=TipoComidas}">
+                </ComboBox>
                 <TextBlock Text="Tipo de comida"></TextBlock>
                 <TextBox></TextBox>
                 <GroupBox Margin="5"
@@ -115,7 +118,8 @@
                                     </Border.Effect>
 
                                     <DockPanel Background="SkyBlue">
-                                        <Viewbox DockPanel.Dock="Top" Height="40">
+                                        <Viewbox DockPanel.Dock="Top"
+                                                 Height="40">
                                             <TextBlock x:Name="TituloComida"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Center"
@@ -151,7 +155,8 @@
                                                    Visibility="{Binding Converter={StaticResource Visibility}, Path=Soja}"></Image>
                                         </DockPanel>
                                         <Image Source="{Binding Path=Imagen}"
-                                               Margin="5" Height="300"></Image>
+                                               Margin="5"
+                                               Height="300"></Image>
                                     </DockPanel>
                                 </Border>
                             </WrapPanel>

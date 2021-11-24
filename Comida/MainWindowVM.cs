@@ -10,8 +10,17 @@ namespace Comida
 {
     class MainWindowVM : INotifyPropertyChanged
     {
-
+        //private ObservableCollection<String> TipoComidas;
         private ObservableCollection<Plato> listaComida;
+
+        private ObservableCollection<String> tipoComidas;
+
+        public ObservableCollection<String> TipoComidas
+        {
+            get { return tipoComidas; }
+            set { tipoComidas = value; }
+        }
+
         public ObservableCollection<Plato> ListaComida
         {
             get { return listaComida; }
@@ -30,6 +39,12 @@ namespace Comida
         public MainWindowVM()
         {
             listaComida = Plato.GetSamples("./assets/fotoPlatos");
+            TipoComidas = new ObservableCollection<String>();
+            for (int i = 0; i < listaComida.Count; i++)
+            {
+                if (!TipoComidas.Contains(listaComida[i].Tipo))
+                    TipoComidas.Add(listaComida[i].Tipo);
+            }
         }
 
     }
