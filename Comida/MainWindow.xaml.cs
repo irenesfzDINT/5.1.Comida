@@ -27,5 +27,10 @@ namespace Comida
             this.DataContext = vm;
             InitializeComponent();
         }
+
+        private void botonLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            vm.QuitarPlato();
+        }
     }
 }

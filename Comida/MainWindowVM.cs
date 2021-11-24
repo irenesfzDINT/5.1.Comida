@@ -10,7 +10,6 @@ namespace Comida
 {
     class MainWindowVM : INotifyPropertyChanged
     {
-        //private ObservableCollection<String> TipoComidas;
         private ObservableCollection<Plato> listaComida;
 
         private ObservableCollection<String> tipoComidas;
@@ -18,7 +17,9 @@ namespace Comida
         public ObservableCollection<String> TipoComidas
         {
             get { return tipoComidas; }
-            set { tipoComidas = value; }
+            set { tipoComidas = value;
+                NotifyPropertyChanged("TipoComidas");
+            }
         }
 
         public ObservableCollection<Plato> ListaComida
@@ -30,6 +31,17 @@ namespace Comida
                 NotifyPropertyChanged("ListaComida");
             }
         }
+        private Plato platoSeleccionado;
+
+        public Plato PlatoSeleccionado
+        {
+            get { return platoSeleccionado; }
+            set
+            {
+                platoSeleccionado = value;
+                NotifyPropertyChanged("PlatoSeleccionado");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -39,12 +51,17 @@ namespace Comida
         public MainWindowVM()
         {
             listaComida = Plato.GetSamples("./assets/fotoPlatos");
-            TipoComidas = new ObservableCollection<String>();
+            tipoComidas = new ObservableCollection<String>();
             for (int i = 0; i < listaComida.Count; i++)
             {
-                if (!TipoComidas.Contains(listaComida[i].Tipo))
-                    TipoComidas.Add(listaComida[i].Tipo);
+                if (!tipoComidas.Contains(listaComida[i].Tipo))
+                    tipoComidas.Add(listaComida[i].Tipo);
             }
+            
+        }
+        public void QuitarPlato()
+        {
+            PlatoSeleccionado = null;
         }
 
     }

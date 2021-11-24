@@ -58,7 +58,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
     </Window.Resources>
     <Border BorderThickness="1"
             BorderBrush="Black"
@@ -71,33 +70,41 @@
                         Orientation="Vertical"
                         Background="LightGray">
                 <TextBlock Text="Nombre del Plato"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=PlatoSeleccionado.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <TextBlock Text="Foto del plato"></TextBlock>
+                <TextBox Text="{Binding Path=PlatoSeleccionado.Imagen, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <ComboBox Margin="5"
-                          SelectedItem="{Binding Path=PlatoActual.Tipo}"
+                          SelectedItem="{Binding Path=PlatoSeleccionado.Tipo, UpdateSourceTrigger=PropertyChanged}"
                           ItemsSource="{Binding Path=TipoComidas}">
                 </ComboBox>
                 <TextBlock Text="Tipo de comida"></TextBlock>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Path=PlatoSeleccionado.Tipo, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <GroupBox Margin="5"
                           Header="Alérgenos"
                           BorderBrush="Black">
                     <UniformGrid>
-                        <CheckBox Content="Leche"></CheckBox>
-                        <CheckBox Content="Soja"></CheckBox>
-                        <CheckBox Content="Gluten"></CheckBox>
-                        <CheckBox Content="Sulfitos"></CheckBox>
+                        <CheckBox Content="Leche"
+                                  IsChecked="{Binding Path=PlatoSeleccionado.Leche, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                        <CheckBox Content="Soja"
+                                  IsChecked="{Binding Path=PlatoSeleccionado.Soja, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                        <CheckBox Content="Gluten"
+                                  IsChecked="{Binding Path=PlatoSeleccionado.Gluten, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                        <CheckBox Content="Sulfitos"
+                                  IsChecked="{Binding Path=PlatoSeleccionado.Sulfitos, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                     </UniformGrid>
                 </GroupBox>
-                <Button Margin="5"
+                <Button x:Name="botonLimpiar"
+                        Margin="5"
                         Width="100"
                         Content="Limpiar selección"
-                        HorizontalAlignment="Left"></Button>
+                        HorizontalAlignment="Left"
+                        Click="botonLimpiar_Click"></Button>
             </StackPanel>
             <Border Margin="10"
                     BorderBrush="LightGray"
                     BorderThickness="1">
                 <ListBox ItemsSource="{Binding Path=ListaComida}"
+                         SelectedItem="{Binding Path=PlatoSeleccionado}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
